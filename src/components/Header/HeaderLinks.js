@@ -1,12 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
 import { renderIcon } from '@download/blockies';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Avatar from '@material-ui/core/Avatar';
-import CustomDropdown from 'components/CustomDropdown/CustomDropdown.js';
 import Button from 'components/CustomButtons/Button.js';
 import { useTranslation } from 'react-i18next';
 
@@ -15,17 +13,15 @@ import styles from 'assets/jss/material-kit-pro-react/components/headerLinksStyl
 const useStyles = makeStyles(styles);
 
 export default function HeaderLinks(props) {
-  let history = useHistory();
-  const { dropdownHoverColor, connected, address, connectWallet, disconnectWallet } = props;
+  const { connected, address, connectWallet, disconnectWallet } = props;
   const classes = useStyles();
-  const { t, i18n } = useTranslation();
-  const [lng, setLanguage] = useState('en');
+  const { t } = useTranslation();
   const [shortAddress, setShortAddress] = useState('');
   const [dataUrl, setDataUrl] = useState(null);
   const canvasRef = useRef(null);
 
   useEffect(() => {
-    if (!connected) return;
+    if (!connected) { return; }
 
     const canvas = canvasRef.current;
     renderIcon({ seed: address.toLowerCase() }, canvas);
@@ -38,89 +34,10 @@ export default function HeaderLinks(props) {
     } else {
       setShortAddress(`${address.slice(0, 6)}...${address.slice(-4)}`);
     }
-  }, [dataUrl, address]);
-
-  const switchLanguage = () => {
-    switch (i18n.language) {
-      case 'zh':
-      case 'zh-CN':
-        return '中文';
-      case 'en':
-        return 'English';
-      case 'ja':
-        return '日本語';
-      case 'th':
-        return 'ไทย';
-      case 'ko':
-        return '한글';
-      default:
-        return 'English';
-    }
-  };
-
-  const handleClick = event => {
-    switch (event) {
-      case 'English':
-        return i18n.changeLanguage('en').then(() => setLanguage(event));
-      case '中文':
-        return i18n.changeLanguage('zh').then(() => setLanguage(event));
-      case '日本語':
-        return i18n.changeLanguage('ja').then(() => setLanguage(event));
-      case 'ไทย':
-        return i18n.changeLanguage('th').then(() => setLanguage(event));
-      case '한글':
-        return i18n.changeLanguage('ko').then(() => setLanguage(event));
-      default:
-        return;
-    }
-  };
-
-  const changeTabs = newValue => {
-    history.push({
-      pathname: '/' + newValue,
-      state: {},
-    });
-  };
-
-  useEffect(() => {
-    const lng = switchLanguage();
-    setLanguage(lng);
-  });
-
-  let defaultTabValue = '';
-  if (window.location.hash != '#/' && window.location.hash != '#/index') {
-    defaultTabValue = window.location.hash.split('/')[1];
-  }
+  }, [dataUrl, address, connected]);
 
   return (
     <List className={classes.list + ' ' + classes.mlAuto}>
-      <ListItem className={classes.listItem}>
-        <CustomDropdown
-          navDropdown
-          hoverColor={dropdownHoverColor}
-          buttonText={lng}
-          buttonProps={{
-            className: classes.navLink,
-            color: 'transparent',
-          }}
-          onClick={handleClick}
-          dropdownList={[
-            'English',
-            '中文',
-            '日本語',
-            '한글',
-            'ไทย',
-            { divider: true },
-            <a
-              href="https://github.com/beefyfinance/beefy-app/tree/master/src/locales"
-              target="_blank"
-              className={classes.cta}
-            >
-              Help to translate
-            </a>,
-          ]}
-        />
-      </ListItem>
       <ListItem className={classes.listItem}>
         <Button
           disableElevation
@@ -150,7 +67,7 @@ export default function HeaderLinks(props) {
                   marginRight: '4px',
                 }}
               />
-              {t('Vault-Wallet')}
+              {t('Vault.Wallet')}
             </>
           )}
         </Button>

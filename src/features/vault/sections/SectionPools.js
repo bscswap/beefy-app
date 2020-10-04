@@ -34,7 +34,7 @@ import { inputLimitPass, inputFinalVal } from 'features/helpers/utils';
 const useStyles = makeStyles(sectionPoolsStyle);
 
 export default function SectionPools() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { web3, address, networkId } = useConnectWallet();
   let { pools, fetchPoolBalances } = useFetchPoolBalances();
   const { tokens, fetchBalances } = useFetchBalances();
@@ -209,7 +209,7 @@ export default function SectionPools() {
       }, 10000);
       return () => clearInterval(id);
     }
-  }, [address, web3, fetchBalances, fetchPoolBalances]);
+  }, [address, web3, fetchBalances, fetchPoolBalances, pools, tokens]);
 
   useEffect(() => {
     fetchContractApy();
@@ -223,13 +223,11 @@ export default function SectionPools() {
       .toNumber();
   };
 
-  const isZh = Boolean(i18n.language == 'zh' || i18n.language == 'zh-CN');
-
   return (
     <Grid container style={{ paddingTop: '4px' }}>
       <Grid item xs={12}>
-        <div className={classes.mainTitle}>{t('Vault-Main-Title')}</div>
-        <h3 className={classes.secondTitle}>{t('Vault-Second-Title')}</h3>
+        <div className={classes.mainTitle}>{t('Vault.MainTitle')}</div>
+        <h3 className={classes.secondTitle}>{t('Vault.SecondTitle')}</h3>
       </Grid>
 
       {Boolean(networkId === Number(process.env.NETWORK_ID)) &&
@@ -280,14 +278,14 @@ export default function SectionPools() {
                                   style={{
                                     color: primaryColor[0],
                                     marginLeft: '4px',
-                                    visibility: Boolean(isZh ? pool.tokenDescriptionUrl2 : pool.tokenDescriptionUrl)
+                                    visibility: Boolean(pool.tokenDescriptionUrl)
                                       ? 'visible'
                                       : 'hidden',
                                   }}
                                   className={'yfiiicon yfii-help-circle'}
                                   onClick={event => {
                                     event.stopPropagation();
-                                    window.open(isZh ? pool.tokenDescriptionUrl2 : pool.tokenDescriptionUrl);
+                                    window.open(pool.tokenDescriptionUrl);
                                   }}
                                 />
                               </Hidden>
@@ -312,7 +310,7 @@ export default function SectionPools() {
                                   {forMat(balanceSingle)} {pool.token}
                                 </Typography>
                                 <Typography className={classes.iconContainerSubTitle} variant="body2">
-                                  {t('Vault-Balance')}
+                                  {t('Vault.Balance')}
                                 </Typography>
                               </Grid>
                             </Grid>
@@ -329,7 +327,7 @@ export default function SectionPools() {
                                   {forMat(singleDepositedBalance)} {pool.token}
                                 </Typography>
                                 <Typography className={classes.iconContainerSubTitle} variant="body2">
-                                  {t('Vault-Deposited')}
+                                  {t('Vault.Deposited')}
                                 </Typography>
                               </Grid>
                             </Grid>
@@ -346,7 +344,7 @@ export default function SectionPools() {
                                 {depositedApy}
                               </Typography>
                               <Typography className={classes.iconContainerSubTitle} variant="body2">
-                                {t('Vault-ListAPY')}
+                                {t('Vault.ListAPY')}
                               </Typography>
                             </Grid>
                           </Grid>
@@ -361,13 +359,13 @@ export default function SectionPools() {
                                   root: classes.iconContainerSecond,
                                 }}
                                 style={{
-                                  visibility: Boolean(isZh ? pool.tokenDescriptionUrl2 : pool.tokenDescriptionUrl)
+                                  visibility: Boolean(pool.tokenDescriptionUrl)
                                     ? 'visible'
                                     : 'hidden',
                                 }}
                                 onClick={event => {
                                   event.stopPropagation();
-                                  window.open(isZh ? pool.tokenDescriptionUrl2 : pool.tokenDescriptionUrl);
+                                  window.open(pool.tokenDescriptionUrl);
                                 }}
                               >
                                 <i className={'yfiiicon yfii-help-circle'} />
@@ -398,11 +396,11 @@ export default function SectionPools() {
                     <Grid container>
                       <Grid item xs={12} sm={6} className={classes.sliderDetailContainer}>
                         <div className={classes.showDetailLeft}>
-                          {t('Vault-Balance')}:{balanceSingle.toFormat(4)} {pool.token}
+                          {t('Vault.Balance')}:{balanceSingle.toFormat(4)} {pool.token}
                         </div>
                         <FormControl fullWidth variant="outlined" className={classes.numericInput}>
                           <CustomOutlinedInput
-                            value={depositedBalance[index] != undefined ? depositedBalance[index] : '0'}
+                            value={depositedBalance[index] !== undefined ? depositedBalance[index] : '0'}
                             onChange={changeDetailInputValue.bind(
                               this,
                               'depositedBalance',
@@ -426,8 +424,8 @@ export default function SectionPools() {
                                 disabled={fetchApprovalPending[index]}
                               >
                                 {fetchApprovalPending[index]
-                                  ? `${t('Vault-ApproveING')}`
-                                  : `${t('Vault-ApproveButton')}`}
+                                  ? `${t('Vault.Approving')}`
+                                  : `${t('Vault.ApproveButton')}`}
                               </Button>
                             </div>
                           ) : (
@@ -443,7 +441,7 @@ export default function SectionPools() {
                                 }
                                 onClick={onDeposit.bind(this, pool, index, false, balanceSingle)}
                               >
-                                {t('Vault-DepositButton')}
+                                {t('Vault.DepositButton')}
                               </Button>
                               {Boolean(pool.tokenAddress) && (
                                 <Button
@@ -455,7 +453,7 @@ export default function SectionPools() {
                                   }
                                   onClick={onDeposit.bind(this, pool, index, true, balanceSingle)}
                                 >
-                                  {t('Vault-DepositButtonAll')}
+                                  {t('Vault.DepositButtonAll')}
                                 </Button>
                               )}
                             </div>
@@ -469,7 +467,7 @@ export default function SectionPools() {
                         </div>
                         <FormControl fullWidth variant="outlined">
                           <CustomOutlinedInput
-                            value={withdrawAmount[index] != undefined ? withdrawAmount[index] : '0'}
+                            value={withdrawAmount[index] !== undefined ? withdrawAmount[index] : '0'}
                             onChange={changeDetailInputValue.bind(
                               this,
                               'withdrawAmount',
@@ -492,7 +490,7 @@ export default function SectionPools() {
                             disabled={fetchWithdrawPending[index] || !Boolean(withdrawAmount[index])}
                             onClick={onWithdraw.bind(this, pool, index, false, singleDepositedBalance)}
                           >
-                            {fetchWithdrawPending[index] ? `${t('Vault-WithdrawING')}` : `${t('Vault-WithdrawButton')}`}
+                            {fetchWithdrawPending[index] ? `${t('Vault.Withdrawing')}` : `${t('Vault.WithdrawButton')}`}
                           </Button>
                           <Button
                             className={`${classes.showDetailButton} ${classes.showDetailButtonOutlined}`}
@@ -501,8 +499,8 @@ export default function SectionPools() {
                             onClick={onWithdraw.bind(this, pool, index, true, singleDepositedBalance)}
                           >
                             {fetchWithdrawPending[index]
-                              ? `${t('Vault-WithdrawING')}`
-                              : `${t('Vault-WithdrawButtonAll')}`}
+                              ? `${t('Vault.Withdrawing')}`
+                              : `${t('Vault.WithdrawButtonAll')}`}
                           </Button>
                         </div>
                       </Grid>

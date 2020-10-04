@@ -4,8 +4,6 @@ import { SnackbarProvider } from 'notistack';
 import { Notifier } from 'features/common';
 import Header from 'components/Header/Header.js';
 import HeaderLinks from 'components/Header/HeaderLinks.js';
-import Footer from 'components/Footer/Footer.js';
-import Landscape from 'components/Landscape/Landscape.js';
 import { makeStyles } from '@material-ui/core/styles';
 import { useConnectWallet, useDisconnectWallet } from './redux/hooks';
 import i18next from 'i18next';
@@ -31,7 +29,7 @@ export default function App({ children }) {
         injected: {
           display: {
             name: 'Injected',
-            description: i18next.t('Home-BrowserWallet'),
+            description: i18next.t('Wallet.Connect'),
           },
         },
         walletconnect: {
@@ -49,7 +47,7 @@ export default function App({ children }) {
     if (web3Modal && (web3Modal.cachedProvider || window.ethereum)) {
       connectWallet(web3Modal);
     }
-  }, [web3Modal, connectWallet, window.ethereum]);
+  }, [web3Modal, connectWallet]);
 
   useEffect(() => {
     if (
@@ -59,9 +57,9 @@ export default function App({ children }) {
       networkId &&
       Boolean(networkId !== Number(process.env.NETWORK_ID))
     ) {
-      alert(t('App-SnackBarText'));
+      alert(t('Network.Error'));
     }
-  }, [web3, address, networkId]);
+  }, [web3, address, connectWalletPending, networkId, t]);
 
   return (
     <SnackbarProvider>
@@ -84,9 +82,7 @@ export default function App({ children }) {
             {Boolean(networkId === Number(process.env.NETWORK_ID)) && children}
             <Notifier />
           </div>
-          <Footer />
         </div>
-        <Landscape />
       </div>
     </SnackbarProvider>
   );
