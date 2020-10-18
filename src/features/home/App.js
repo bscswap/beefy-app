@@ -59,7 +59,7 @@ export default function App({ children }) {
     <SnackbarProvider>
       <div className={classes.page}>
         <Header
-          brand="beefy.finance"
+          brand="LOA DEFI"
           links={
             <HeaderLinks dropdownHoverColor="dark" address={address} connected={connected} connectWallet={() => connectWallet(web3Modal)} disconnectWallet={() => disconnectWallet(web3, web3Modal)} />
           }
