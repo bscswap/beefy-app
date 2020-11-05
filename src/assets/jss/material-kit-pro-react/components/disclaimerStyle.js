@@ -8,9 +8,9 @@ const sectionTitleStyle = theme => ({
   },
   disclaimer: {
     padding: '12px',
-    border: '1px solid #F8F2EC',
+    border: '1px solid #ffffff',
     borderRadius: '0',
-    background: '#F8F2EC',
+    background: '#ffffff',
     marginBottom: '2rem',
     fontWeight: 900,
     color: '#000',

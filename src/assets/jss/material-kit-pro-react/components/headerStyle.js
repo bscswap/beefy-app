@@ -120,7 +120,7 @@ const headerStyle = theme => ({
   },
   dark: {
     color: whiteColor,
-    backgroundColor: '#fbf9f6',
+    backgroundColor: '#ffffff',
     boxShadow: '0px 0px',
   },
   white: {

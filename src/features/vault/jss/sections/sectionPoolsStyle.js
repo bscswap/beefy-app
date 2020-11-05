@@ -168,7 +168,7 @@ const sectionPoolsStyle = theme => ({
     },
   },
   accordion: {
-    backgroundColor: '#FBF6F0',
+    backgroundColor: '#ffffff',
     color: '#fff',
     borderRadius: '8px',
   },
@@ -178,7 +178,7 @@ const sectionPoolsStyle = theme => ({
   details: {
     display: 'flex',
     alignItems: 'center',
-    background: '#FBF6F0',
+    background: '#ffffff',
     borderRadius: '8px',
   },
   track: {

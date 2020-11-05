@@ -59,30 +59,6 @@ export default function HeaderLinks(props) {
   return (
     <List className={classes.list + ' ' + classes.mlAuto}>
       <ListItem className={classes.listItem}>
-        <CustomDropdown
-          navDropdown
-          hoverColor={dropdownHoverColor}
-          buttonText={lng}
-          buttonProps={{
-            className: classes.navLink,
-            color: 'transparent',
-          }}
-          onClick={handleClick}
-          dropdownList={[
-            'English',
-            'Español',
-            'Français',
-            'Svenska',
-            '한국어',
-            // TODO: more translations
-            { divider: true },
-            <a href="https://github.com/beefyfinance/beefy-app/tree/master/src/locales" target="_blank" rel="noopener noreferrer" className={classes.cta}>
-              Help to translate
-            </a>,
-          ]}
-        />
-      </ListItem>
-      <ListItem className={classes.listItem}>
         <Button disableElevation className={classes.walletDisplay} onClick={connected ? disconnectWallet : connectWallet}>
           {connected ? (
             <>

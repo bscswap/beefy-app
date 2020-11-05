@@ -57,14 +57,13 @@ export default function Header(props) {
     <AppBar className={appBarClasses}>
       <Toolbar className={classes.container}>
         <Button className={classes.title}>
-          <img alt="BIFI" src={require(`../../images/LOADEFI.png`)} height="40px" className={classes.logo} />
-          <a href="https://beefy.finance">{brand}</a>
+          <img alt="LFI" src={require(`../../images/LOADEFI.png`)} height="40px" className={classes.logo} />
+          <a href="https://lfi.loaprotocol.io">{brand}</a>
         </Button>
 
         <span>
-          { renderLink('gov', 'gov', 'landmark') }
-          { renderLink('vote', 'vote', 'vote-yea') }
-          { renderLink('app', 'app', 'hand-holding-usd') }
+          { renderLink('', 'BSCswap', 'landmark') }
+          { renderLink('stable.', 'Stable', 'hand-holding-usd') }
         </span>
 
         <Hidden smDown implementation="css">
@@ -76,7 +75,7 @@ export default function Header(props) {
           </IconButton>
         </Hidden>
       </Toolbar>
-      
+
       <Hidden mdUp implementation="js">
         <Drawer
           variant="temporary"
@@ -116,7 +115,7 @@ const renderLink = (name, label, icon) => {
   `;
 
   return (
-    <Link href={`https://${name}.beefy.finance`} target="_blank" rel="noopener noreferrer">
+    <Link href={`https://${name}bscswap.com`} target="_blank" rel="noopener noreferrer">
       <Icon className={`fas fa-${icon}`} />
       <span>{label}</span>
     </Link>

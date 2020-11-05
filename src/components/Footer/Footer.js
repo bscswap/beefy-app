@@ -20,7 +20,7 @@ const Footer = () => {
           <LinkLabel>website</LinkLabel>
         </Link>
 
-        <Link href="https://medium.com/beefyfinance" target="_blank">
+        <Link href="https://medium.com/@loaprotocol" target="_blank">
           <BrandIcon type='medium' />
           <LinkLabel>news</LinkLabel>
         </Link>
@@ -33,17 +33,7 @@ const Footer = () => {
 
       <Column>
         <Title>products</Title>
-        <Link href="https://gov.beefy.finance" target="_blank">
-          <FAIcon type='landmark' />
-          <LinkLabel>gov</LinkLabel>
-        </Link>
-
-        <Link href="https://vote.beefy.finance" target="_blank">
-          <FAIcon type='vote-yea' />
-          <LinkLabel>vote</LinkLabel>
-        </Link>
-
-        <Link href="https://app.loaprotocol.io" target="_blank">
+        <Link href="https://lfi.loaprotocol.io" target="_blank">
           <FAIcon type='hand-holding-usd' />
           <LinkLabel>app</LinkLabel>
         </Link>
