@@ -12,8 +12,6 @@ import { SnackbarProvider } from 'notistack';
 import { Notifier } from 'features/common';
 
 import Web3Modal from 'web3modal';
-import Footer from '../../components/Footer/Footer';
-import Pastures from '../../components/Pastures/Pastures';
 import appStyle from './jss/appStyle.js';
 
 import { useConnectWallet, useDisconnectWallet } from './redux/hooks';
@@ -59,7 +57,7 @@ export default function App({ children }) {
     <SnackbarProvider>
       <div className={classes.page}>
         <Header
-          brand="beefy.finance"
+          brand="LOA DEFI"
           links={
             <HeaderLinks dropdownHoverColor="dark" address={address} connected={connected} connectWallet={() => connectWallet(web3Modal)} disconnectWallet={() => disconnectWallet(web3, web3Modal)} />
           }
@@ -71,9 +69,6 @@ export default function App({ children }) {
             <Notifier />
           </div>
         </div>
-
-        <Footer />
-        <Pastures />
       </div>
     </SnackbarProvider>
   );

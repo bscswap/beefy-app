@@ -45,7 +45,7 @@ export default function HeaderLinks(props) {
       case 'English':
         return i18n.changeLanguage('en').then(() => setLanguage(event));
       case 'Español':
-          return i18n.changeLanguage('es').then(() => setLanguage(event));  
+          return i18n.changeLanguage('es').then(() => setLanguage(event));
       case 'Français':
         return i18n.changeLanguage('fr').then(() => setLanguage(event));
       case 'Svenska':
@@ -58,29 +58,6 @@ export default function HeaderLinks(props) {
 
   return (
     <List className={classes.list + ' ' + classes.mlAuto}>
-      <ListItem className={classes.listItem}>
-        <CustomDropdown
-          navDropdown
-          hoverColor={dropdownHoverColor}
-          buttonText={lng}
-          buttonProps={{
-            className: classes.navLink,
-            color: 'transparent',
-          }}
-          onClick={handleClick}
-          dropdownList={[
-            'English',
-            'Español',
-            'Français',
-            'Svenska',
-            // TODO: more translations
-            { divider: true },
-            <a href="https://github.com/beefyfinance/beefy-app/tree/master/src/locales" target="_blank" rel="noopener noreferrer" className={classes.cta}>
-              Help to translate
-            </a>,
-          ]}
-        />
-      </ListItem>
       <ListItem className={classes.listItem}>
         <Button disableElevation className={classes.walletDisplay} onClick={connected ? disconnectWallet : connectWallet}>
           {connected ? (

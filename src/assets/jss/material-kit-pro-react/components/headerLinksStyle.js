@@ -218,7 +218,7 @@ const headerLinksStyle = theme => ({
     margin: '12px 0',
     fontSize: '14px',
     fontWeight: 'bold',
-    backgroundColor: '#F8F2EC',
+    backgroundColor: '#ffffff',
     color: '#fff',
     '&:hover': {
       backgroundColor: secondaryColor[2],

@@ -2,7 +2,7 @@
 
 ## Overview
 
-Yield farming optimizer for Binance Smart Chain
+Yield aggregator for Binance Smart Chain powered by LOA Protocol
 
 ## Dependencies
 

@@ -80,17 +80,25 @@ export default function SectionPools() {
   const formatTvl = (tvl, oraclePrice, fallbackPrice) => {
     // TODO: bignum?
     tvl *= oraclePrice || fallbackPrice;
-    
+
     const order = Math.floor(Math.log10(tvl) / 3);
     if (order < 0) { return '$0.00'; }
-    
+
     const units = ['','k','M','B','T'];
     const num = tvl / 1000 ** order;
     const prefix = oraclePrice === 0 ? '~$' : '$';
-    
+
     return prefix + num.toFixed(2) + units[order];
   }
-  
+
+  const formatApy = (apy) => {
+    if (apy) {
+      return `${(apy * 100).toFixed(1)}%`;
+    } else {
+      return '- %';
+    }
+  }
+
   const handleDepositedBalance = (index, total, _, sliderNum) => {
     setDepositedBalance({
       ...depositedBalance,
@@ -129,7 +137,7 @@ export default function SectionPools() {
         [`slider-${index}`]: 100,
       });
     }
-    
+
     let amountValue = depositedBalance[index] ? depositedBalance[index].replace(',', '') : depositedBalance[index];
     if (!pool.tokenAddress) {
       fetchDepositEth({
@@ -290,7 +298,7 @@ export default function SectionPools() {
                               </Grid>
                             </Grid>
                           </Hidden>
-                        
+
                           <Hidden mdDown>
                             <Grid item xs={4} md={3} container justify="center" alignItems="center">
                               <Grid item style={{ width: '200px' }}>
@@ -303,12 +311,12 @@ export default function SectionPools() {
                               </Grid>
                             </Grid>
                           </Hidden>
-                         
+
                           <Grid item xs={5} md={2} container justify="center" alignItems="center">
                             <Grid item>
                               <Typography className={classes.iconContainerMainTitle} variant="body2" gutterBottom noWrap>
                                 {' '}
-                                {depositedApy}
+                                {formatApy(depositedApy)}
                               </Typography>
                               <Typography className={classes.iconContainerSubTitle} variant="body2">
                                 {t('Vault-APY')}
@@ -328,9 +336,9 @@ export default function SectionPools() {
                             </Grid>
                           </Grid>
                         </Grid>
-                        
+
                       </Grid>
-                      
+
                       <Grid item>
                         <Grid item container justify="flex-end" alignItems="center" spacing={2}>
                           <Hidden mdDown>
