@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/static/css/main.9ea70a39.chunk.css",
+    "main.js": "/static/js/main.81dfd173.chunk.js",
+    "main.js.map": "/static/js/main.81dfd173.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.48f7e4d2.js",
+    "runtime-main.js.map": "/static/js/runtime-main.48f7e4d2.js.map",
+    "static/js/2.3cd759da.chunk.js": "/static/js/2.3cd759da.chunk.js",
+    "static/js/2.3cd759da.chunk.js.map": "/static/js/2.3cd759da.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.a662076d717575df7b777fec2efdf198.js": "/precache-manifest.a662076d717575df7b777fec2efdf198.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.9ea70a39.chunk.css.map": "/static/css/main.9ea70a39.chunk.css.map",
+    "static/media/BURGER.png": "/static/media/BURGER.bba1cc02.png",
+    "static/media/BUSD.png": "/static/media/BUSD.f6fd018e.png",
+    "static/media/ETH.png": "/static/media/ETH.37e4f26b.png",
+    "static/media/LINK.png": "/static/media/LINK.f66b0cf3.png",
+    "static/media/LOADEFI.png": "/static/media/LOADEFI.936da5e6.png",
+    "static/media/USDT.png": "/static/media/USDT.4d06ed03.png",
+    "static/media/WBNB.png": "/static/media/WBNB.fc0a2d00.png",
+    "static/media/metamask.png": "/static/media/metamask.5946a56b.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.48f7e4d2.js",
+    "static/js/2.3cd759da.chunk.js",
+    "static/css/main.9ea70a39.chunk.css",
+    "static/js/main.81dfd173.chunk.js"
+  ]
+}
