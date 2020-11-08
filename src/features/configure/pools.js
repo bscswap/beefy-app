@@ -1,5 +1,5 @@
 export const pools = [{
-    id: 'busd',
+    id: 'fortube-busd',
     logo: 'fortube/BUSD',
     name: 'BUSD',
     token: 'BUSD',
@@ -20,7 +20,7 @@ export const pools = [{
     fallbackPrice: 1,
   },
   {
-    id: 'usdt',
+    id: 'fortube-usdt',
     logo: 'fortube/USDT',
     name: 'USDT',
     token: 'USDT',
@@ -41,7 +41,7 @@ export const pools = [{
     fallbackPrice: 1,
   },
   {
-    id: 'dai',
+    id: 'fortube-dai',
     logo: 'fortube/DAI',
     name: 'DAI',
     token: 'DAI',
